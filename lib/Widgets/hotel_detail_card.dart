@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tripdetail/Constants/colors.dart';
+import 'package:tripdetail/Model/trip_detail_modal/hotel_list.dart';
 
 class DetailsCard extends StatelessWidget {
-  const DetailsCard({super.key});
+  final HotelList hotelList;
+  const DetailsCard(this.hotelList, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    double? rating = double.tryParse(hotelList.propertyRating);
     return Card(
       child: Row(children: [
         // Image widget
         Column(
           children: [
             RatingBar.builder(
-              initialRating: 3,
+              initialRating: rating ?? 0,
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,
@@ -24,32 +27,34 @@ class DetailsCard extends StatelessWidget {
                 color: CustomColors.hotelname,
               ),
               onRatingUpdate: (rating) {
-                print(rating);
+                // print(rating);
               },
             ),
             Text(
-              "Hotle name",
+              hotelList.hotelName,
               style: TextStyle(fontSize: 18, color: CustomColors.hotelname),
             ),
             Text(
-              "Location",
+              hotelList.location,
               style: TextStyle(fontSize: 18, color: CustomColors.hotelname),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   "From",
                   style: TextStyle(fontSize: 18, color: Colors.red),
                 ),
                 Text(
-                  "rate in Usd",
+                  hotelList.rateCurrencyCode,
                   style: TextStyle(fontSize: 18, color: CustomColors.hotelname),
                 ),
                 ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        disabledBackgroundColor: Colors.green),
                     onPressed: null,
-                    child: Text(
+                    child: const Text(
                       "Available",
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ))
