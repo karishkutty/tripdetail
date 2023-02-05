@@ -13,6 +13,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: const Icon(
+          Icons.arrow_back,
+          color: Colors.grey,
+        ),
+        actions: const [
+          IconButton(onPressed: null, icon: Icon(Icons.favorite_border)),
+          IconButton(onPressed: null, icon: Icon(Icons.tune_outlined)),
+          IconButton(onPressed: null, icon: Icon(Icons.filter_alt_outlined))
+        ],
+      ),
       body: Container(
         height: double.infinity,
         color: Colors.white,
