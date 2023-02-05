@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripdetail/Model/trip_detail_modal/hotel_list.dart';
 import 'package:tripdetail/Utility/utility.dart';
+import 'package:tripdetail/View/sortingoverlay.dart';
 import 'package:tripdetail/Widgets/hotel_detail_card.dart';
 
 import '../ViewModel/detail_provider.dart';
@@ -19,9 +20,18 @@ class HomeScreen extends StatelessWidget {
           Icons.arrow_back,
           color: Colors.grey,
         ),
-        actions: const [
+        actions: [
           IconButton(onPressed: null, icon: Icon(Icons.favorite_border)),
-          IconButton(onPressed: null, icon: Icon(Icons.tune_outlined)),
+          IconButton(
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SortingOverlay();
+                  },
+                );
+              },
+              icon: Icon(Icons.tune_outlined)),
           IconButton(onPressed: null, icon: Icon(Icons.filter_alt_outlined))
         ],
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:like_button/like_button.dart';
 import 'package:tripdetail/Constants/colors.dart';
 import 'package:tripdetail/Model/trip_detail_modal/hotel_list.dart';
+import 'package:tripdetail/Utility/utility.dart';
 
 class DetailsCard extends StatelessWidget {
   final HotelList hotelList;
@@ -113,6 +114,7 @@ class DetailsCard extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18, color: CustomColors.hotelname),
                       ),
+                      Utility.horizontalSpace(20),
                       SizedBox(
                         height: 20,
                         width: 100,

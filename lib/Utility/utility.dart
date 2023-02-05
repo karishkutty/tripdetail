@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utility {
@@ -7,6 +8,29 @@ class Utility {
     Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_LONG,
+    );
+  }
+
+  static Widget horizontalSpace(double width) {
+    return SizedBox(
+      width: width,
+    );
+  }
+
+  static Divider greyDivider() {
+    return Divider(
+      color: Colors.grey,
+      thickness: 1,
+      height: 1,
+    );
+  }
+
+  static Divider customDivider(color, thickness) {
+    thickness = thickness.toDouble();
+    return Divider(
+      color: color,
+      thickness: thickness,
+      height: thickness,
     );
   }
 
