@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                   List<HotelList>? hotelList = value.fetchHotelList;
                   return (hotelList.isNotEmpty)
                       ? Container(
-                          margin: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.all(5),
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: hotelList.length,

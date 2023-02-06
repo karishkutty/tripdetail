@@ -30,7 +30,7 @@ class DetailsCard extends StatelessWidget {
                       StackTrace? stackTrace) {
                     return const Icon(
                       Icons.broken_image,
-                      size: 150,
+                      size: 80,
                     );
                   },
                 ),

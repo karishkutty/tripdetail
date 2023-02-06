@@ -17,9 +17,9 @@ class HotelProvider with ChangeNotifier {
     return [...hotelList];
   }
 
-  void sortListData(SortingType type, SortingOrder oreder) {
+  void sortListData(SortingType type, SortingOrder order) {
     if (type == SortingType.sortByName) {
-      if (oreder == SortingOrder.ascending) {
+      if (order == SortingOrder.ascending) {
         hotelList.sort(
             (a, b) => a.hotelName.toString().compareTo(b.hotelName.toString()));
       } else {
@@ -27,7 +27,7 @@ class HotelProvider with ChangeNotifier {
             (a, b) => b.hotelName.toString().compareTo(a.hotelName.toString()));
       }
     } else if (type == SortingType.sortByPrice) {
-      if (oreder == SortingOrder.ascending) {
+      if (order == SortingOrder.ascending) {
         hotelList.sort((a, b) =>
             a.totalCharges.toDouble().compareTo(b.totalCharges.toDouble()));
       } else {
@@ -35,7 +35,7 @@ class HotelProvider with ChangeNotifier {
             b.totalCharges.toDouble().compareTo(a.totalCharges.toDouble()));
       }
     } else if (type == SortingType.sortByName) {
-      if (oreder == SortingOrder.ascending) {
+      if (order == SortingOrder.ascending) {
         hotelList.sort(
             (a, b) => a.hotelName.toString().compareTo(b.hotelName.toString()));
       } else {
@@ -43,12 +43,18 @@ class HotelProvider with ChangeNotifier {
             (a, b) => b.hotelName.toString().compareTo(a.hotelName.toString()));
       }
     } else if (type == SortingType.sortByRating) {
-      if (oreder == SortingOrder.ascending) {
-        hotelList.sort((a, b) =>
-            a.propertyRating.toString().compareTo(b.totalCharges.toString()));
+      if (order == SortingOrder.ascending) {
+        hotelList.sort((a, b) {
+          double rating1 = double.tryParse(a.propertyRating) ?? 0;
+          double rating2 = double.tryParse(b.propertyRating) ?? 0;
+          return rating1.compareTo(rating2);
+        });
       } else {
-        hotelList.sort((a, b) =>
-            b.propertyRating.toString().compareTo(a.totalCharges.toString()));
+        hotelList.sort((a, b) {
+          double rating1 = double.tryParse(a.propertyRating) ?? 0;
+          double rating2 = double.tryParse(b.propertyRating) ?? 0;
+          return rating2.compareTo(rating1);
+        });
       }
     }
     notifyListeners();
