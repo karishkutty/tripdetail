@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripdetail/Model/trip_detail_modal/hotel_list.dart';
-import 'package:tripdetail/Utility/utility.dart';
 import 'package:tripdetail/View/sortingoverlay.dart';
 import 'package:tripdetail/Widgets/hotel_detail_card.dart';
 
@@ -21,18 +20,22 @@ class HomeScreen extends StatelessWidget {
           color: Colors.grey,
         ),
         actions: [
-          IconButton(onPressed: null, icon: Icon(Icons.favorite_border)),
+          const IconButton(onPressed: null, icon: Icon(Icons.favorite_border)),
           IconButton(
               onPressed: () {
                 showModalBottomSheet<void>(
                   context: context,
                   builder: (BuildContext context) {
-                    return SortingOverlay();
+                    return const SortingOverlay();
                   },
                 );
               },
-              icon: Icon(Icons.tune_outlined)),
-          IconButton(onPressed: null, icon: Icon(Icons.filter_alt_outlined))
+              icon: const Icon(
+                Icons.tune_outlined,
+                color: Colors.black,
+              )),
+          const IconButton(
+              onPressed: null, icon: Icon(Icons.filter_alt_outlined))
         ],
       ),
       body: Container(
@@ -45,7 +48,6 @@ class HomeScreen extends StatelessWidget {
               if (snapData.connectionState == ConnectionState.waiting) {
                 return const PageLoader();
               } else if (snapData.hasError) {
-                Utility.toastMessage("gettimg error");
                 return Container();
               } else {
                 return Consumer<HotelProvider>(

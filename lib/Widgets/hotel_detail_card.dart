@@ -15,123 +15,129 @@ class DetailsCard extends StatelessWidget {
     final maxWidth = MediaQuery.of(context).size.width * 0.4;
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.only(left: 5.0, right: 5.0),
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Stack(children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.network(
-                hotelList.thumbNailUrl,
-                width: 130,
-                // height: 150,
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return const Icon(
-                    Icons.broken_image,
-                    size: 150,
-                  );
-                },
-              ),
-            ),
-            Positioned(
-              bottom: 1,
-              right: 1,
-              child: LikeButton(
-                // mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                size: 30,
-                circleColor: const CircleColor(
-                    start: Color(0xff00ddff), end: Colors.red),
-                // ignore: prefer_const_constructors
-                bubblesColor: BubblesColor(
-                  dotPrimaryColor: Colors.red,
-                  dotSecondaryColor: Colors.yellow,
+          Expanded(
+            flex: 2000,
+            child: Stack(children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.network(
+                  hotelList.thumbNailUrl,
+                  width: 130,
+                  // height: 150,
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return const Icon(
+                      Icons.broken_image,
+                      size: 150,
+                    );
+                  },
                 ),
-                likeBuilder: (bool isLiked) {
-                  return Icon(
-                    Icons.favorite_border,
-                    color: isLiked ? Colors.red : Colors.grey,
-                    size: 30,
-                  );
-                },
               ),
-            ),
-          ]),
+              Positioned(
+                bottom: 1,
+                right: 1,
+                child: LikeButton(
+                  // mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  size: 30,
+                  circleColor: const CircleColor(
+                      start: Color(0xff00ddff), end: Colors.red),
+                  // ignore: prefer_const_constructors
+                  bubblesColor: BubblesColor(
+                    dotPrimaryColor: Colors.red,
+                    dotSecondaryColor: Colors.yellow,
+                  ),
+                  likeBuilder: (bool isLiked) {
+                    return Icon(
+                      Icons.favorite_border,
+                      color: isLiked ? Colors.red : Colors.grey,
+                      size: 30,
+                    );
+                  },
+                ),
+              ),
+            ]),
+          ),
           // Image widget
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RatingBar.builder(
-                    initialRating: rating ?? 0,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    itemBuilder: (context, _) => Icon(
-                      Icons.star,
-                      color: CustomColors.hotelname,
-                    ),
-                    itemSize: 30,
-                    onRatingUpdate: (rating) {
-                      // print(rating);
-                    },
-                  ),
-                  Container(
-                    constraints: BoxConstraints(maxWidth: maxWidth),
-                    child: Text(
-                      hotelList.hotelName,
-                      maxLines: 5,
-                      overflow: TextOverflow.clip,
-                      style: TextStyle(
-                          fontSize: 14, color: CustomColors.hotelname),
-                    ),
-                  ),
-                  Container(
-                    constraints: BoxConstraints(maxWidth: maxWidth),
-                    child: Text(
-                      hotelList.address,
-                      maxLines: 5,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+          Expanded(
+            flex: 7500,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RatingBar.builder(
+                      initialRating: rating ?? 0,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: CustomColors.hotelname,
                       ),
+                      itemSize: 30,
+                      onRatingUpdate: (rating) {
+                        // print(rating);
+                      },
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "From ",
-                        style: TextStyle(fontSize: 16, color: Colors.red),
-                      ),
-                      Text(
-                        "${hotelList.rateCurrencyCode}  ${hotelList.totalCharges}",
+                    Container(
+                      constraints: BoxConstraints(maxWidth: maxWidth),
+                      child: Text(
+                        hotelList.hotelName,
+                        maxLines: 5,
+                        overflow: TextOverflow.clip,
                         style: TextStyle(
-                            fontSize: 18, color: CustomColors.hotelname),
+                            fontSize: 14, color: CustomColors.hotelname),
                       ),
-                      Utility.horizontalSpace(20),
-                      SizedBox(
-                        height: 20,
-                        width: 100,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
-                                disabledBackgroundColor: Colors.green),
-                            onPressed: null,
-                            child: const Text(
-                              "Available",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
-                            )),
-                      )
-                    ],
-                  )
-                ],
+                    ),
+                    Container(
+                      constraints: BoxConstraints(maxWidth: maxWidth),
+                      child: Text(
+                        hotelList.address,
+                        maxLines: 5,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "From ",
+                          style: TextStyle(fontSize: 16, color: Colors.red),
+                        ),
+                        Text(
+                          "${hotelList.rateCurrencyCode}  ${hotelList.totalCharges}",
+                          style: TextStyle(
+                              fontSize: 18, color: CustomColors.hotelname),
+                        ),
+                        Utility.horizontalSpace(10),
+                        SizedBox(
+                          height: 20,
+                          width: 100,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.green,
+                                  disabledBackgroundColor: Colors.green),
+                              onPressed: null,
+                              child: const Text(
+                                "Available",
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              )),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           )

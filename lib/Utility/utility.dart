@@ -17,8 +17,14 @@ class Utility {
     );
   }
 
+  static Widget verticalSpace(double height) {
+    return SizedBox(
+      height: height,
+    );
+  }
+
   static Divider greyDivider() {
-    return Divider(
+    return const Divider(
       color: Colors.grey,
       thickness: 1,
       height: 1,

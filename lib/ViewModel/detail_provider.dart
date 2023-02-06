@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -13,6 +15,43 @@ class HotelProvider with ChangeNotifier {
 
   List<HotelList> get fetchHotelList {
     return [...hotelList];
+  }
+
+  void sortListData(SortingType type, SortingOrder oreder) {
+    if (type == SortingType.sortByName) {
+      if (oreder == SortingOrder.ascending) {
+        hotelList.sort(
+            (a, b) => a.hotelName.toString().compareTo(b.hotelName.toString()));
+      } else {
+        hotelList.sort(
+            (a, b) => b.hotelName.toString().compareTo(a.hotelName.toString()));
+      }
+    } else if (type == SortingType.sortByPrice) {
+      if (oreder == SortingOrder.ascending) {
+        hotelList.sort((a, b) =>
+            a.totalCharges.toDouble().compareTo(b.totalCharges.toDouble()));
+      } else {
+        hotelList.sort((a, b) =>
+            b.totalCharges.toDouble().compareTo(a.totalCharges.toDouble()));
+      }
+    } else if (type == SortingType.sortByName) {
+      if (oreder == SortingOrder.ascending) {
+        hotelList.sort(
+            (a, b) => a.hotelName.toString().compareTo(b.hotelName.toString()));
+      } else {
+        hotelList.sort(
+            (a, b) => b.hotelName.toString().compareTo(a.hotelName.toString()));
+      }
+    } else if (type == SortingType.sortByRating) {
+      if (oreder == SortingOrder.ascending) {
+        hotelList.sort((a, b) =>
+            a.propertyRating.toString().compareTo(b.totalCharges.toString()));
+      } else {
+        hotelList.sort((a, b) =>
+            b.propertyRating.toString().compareTo(a.totalCharges.toString()));
+      }
+    }
+    notifyListeners();
   }
 
   Future<void> getHotelListApi() async {
@@ -55,3 +94,11 @@ class HotelProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+enum SortingType {
+  sortByPrice,
+  sortByName,
+  sortByRating,
+}
+
+enum SortingOrder { ascending, descending }
